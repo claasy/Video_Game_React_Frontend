@@ -5,3 +5,12 @@ width="100%"
 height="400px"
 legendToggle
 />
+
+
+const GameGraphs = (props) => {
+    return ( 
+        
+     );
+}
+ 
+export default GameGraphs;
