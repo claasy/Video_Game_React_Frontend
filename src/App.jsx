@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import GameGraphs from './Components/GameGraphs/GameGraphs';
 
-BASEURLS = 'https://localhost:7260/api/games';
+let BASEURLS = 'https://localhost:7260/api/games';
 
 function App() {
   const [gameData, setGameData] = useState([])
@@ -16,9 +17,17 @@ function App() {
     setGameData(response.data)
   }
 
+
+
+
+
+
+
+
   return (
     <div>
       Hello World
+      <GameGraphs data = {gameData}/>
     </div>
   );
 }
