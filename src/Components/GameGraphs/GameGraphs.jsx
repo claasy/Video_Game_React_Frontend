@@ -7,14 +7,19 @@ import Chart from "react-google-charts";
 const GameGraphs = (props) => {
     console.log(props.data)
     return ( 
-        <Chart
-        chartType="ScatterChart"
-        data={[["Age", "Weight"], [4, 5.5], [8, 12]]}
-        width="100%"
-        height="400px"
-        legendToggle
-        />    
+        props.data.map((data, index) => {
+            return (
+                <Chart chartType="ColumnChart" 
+                width="100%" 
+                height="400px" 
+                data={[["platform", "Total Sale"], [data.platform, data.globalSales]]} 
+                />   
+            )
+        })
      );
 }
  
 export default GameGraphs;
+
+
+
