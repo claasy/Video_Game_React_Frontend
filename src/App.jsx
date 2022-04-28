@@ -40,15 +40,9 @@ function App() {
 
   return (
     <>
-      <GameGraphs data = {gameData}/>
-      Hello
-    
+      {gameData.length > 0 ? <GameGraphs data = {gameData}/> : null}
       <SearchBar filterGames={filterGames}/>
     </>
-    <div>
-    {gameData.length > 0 ? <GameGraphs data = {gameData}/> : null}
-      
-    </div>
   );
 }
 
