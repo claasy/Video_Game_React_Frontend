@@ -27,8 +27,8 @@ function App() {
   //   setGameByConsole(response.data)
   // };
 
-  const filterGames = (searchterm) =>{
-     let matchingGames = gameData.filter((game) =>game.name.toLowerCase().includes(searchterm.toLowerCase))
+  function filterGames (searchterm) {
+     let matchingGames = gameData.filter((game) => game.name.toLowerCase().includes(searchterm.toLowerCase))
 
      setSearchGames(matchingGames)
     };
@@ -37,16 +37,20 @@ function App() {
 
   return (
     <> 
-     <SearchBar filterGames={filterGames} 
-      searchGames = {searchedGames}
-      show={modalShow}
-      onHide={() => setModalShow(false)}
-      />
-      <p>
-        Global Sales in the Millions by Console
-      </p>
-      {gameData.length > 0 ? <GameGraphs data = {gameData}/> : null}
-      <GameTable searchedGames={searchedGames} setModal = {setModalShow}/>
+      <div>
+        <SearchBar filterGames={filterGames} 
+          />
+      </div>
+      <div>
+        <p>
+          Global Sales in the Millions by Console
+        </p>
+        {gameData.length > 0 ? <GameGraphs data = {gameData}/> : null}  
+      </div>
+      <div>
+        <GameTable searchedGames={searchedGames} setModal = {setModalShow} show={modalShow}
+          onHide={() => setModalShow(false)}/>
+      </div>
     </>
   );
 }
