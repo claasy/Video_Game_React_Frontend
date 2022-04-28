@@ -15,7 +15,7 @@ function App() {
   
   async function getGameData() {
     let response = await axios.get(BASEURLS)
-    console.log(response);
+    console.log(response.data);
     setGameData(response.data)
   }
   
@@ -45,6 +45,10 @@ function App() {
     
       <SearchBar filterGames={filterGames}/>
     </>
+    <div>
+    {gameData.length > 0 ? <GameGraphs data = {gameData}/> : null}
+      
+    </div>
   );
 }
 
