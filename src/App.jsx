@@ -8,7 +8,7 @@ let BASEURLS = 'https://localhost:7260/api/games';
 
 function App() {
   const [gameData, setGameData] = useState([])
-  const [searchedGames, setSearchGames ] = useState({})
+  const [searchedGames, setSearchGames ] = useState([])
   const [modalShow, setModalShow] = React.useState(false);
 
   useEffect(() => {
@@ -18,7 +18,6 @@ function App() {
   
   async function getGameData() {
     let response = await axios.get(BASEURLS)
-    console.log(response.data);
     setGameData(response.data)
   }
   
@@ -26,10 +25,10 @@ function App() {
   //   let response = await axios.get(BASEURLS + "/gamesByConsole")
   //   setGameByConsole(response.data)
   // };
-
-  function filterGames (searchterm) {
-     let matchingGames = gameData.filter((game) => game.name.toLowerCase().includes(searchterm.toLowerCase))
-
+ 
+    const filterGames = (searchterm) => {
+     let matchingGames = gameData.filter((game) => game.name.toLowerCase().includes(searchterm.toLowerCase()))
+     console.log (matchingGames)
      setSearchGames(matchingGames)
     };
 
@@ -40,6 +39,8 @@ function App() {
       <div>
         <SearchBar filterGames={filterGames} 
           />
+        <GameTable searchedGames={searchedGames} setModal = {setModalShow} show={modalShow}
+          onHide={() => setModalShow(false)}/>
       </div>
       <div>
         <p>
@@ -48,8 +49,6 @@ function App() {
         {gameData.length > 0 ? <GameGraphs data = {gameData}/> : null}  
       </div>
       <div>
-        <GameTable searchedGames={searchedGames} setModal = {setModalShow} show={modalShow}
-          onHide={() => setModalShow(false)}/>
       </div>
     </>
   );
