@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import GameGraphs from './Components/GameGraphs/GameGraphs';
 import SearchBar from './Components/SearchBar/SearchBar';
+import GameTable from './Components/GameTable/GameTable';
 
 let BASEURLS = 'https://localhost:7260/api/games';
 
 function App() {
   const [gameData, setGameData] = useState([])
-  const [searchGames, setSearchGames ] = useState({})
+  const [searchedGames, setSearchGames ] = useState({})
+  const [modalShow, setModalShow] = React.useState(false);
+
   useEffect(() => {
     getGameData();
   }, [])
@@ -25,13 +28,7 @@ function App() {
   // };
 
   const filterGames = (searchterm) =>{
-     let matchingGames = searchGames.filter((game) =>{
-       if(game.name.toLowerCase().includes(searchterm.toLowerCase))
-
-       return true
-
-      else return false
-     })
+     let matchingGames = gameData.filter((game) =>game.name.toLowerCase().includes(searchterm.toLowerCase))
 
      setSearchGames(matchingGames)
     };
@@ -39,12 +36,17 @@ function App() {
 
 
   return (
-    <>
+    <> 
+     <SearchBar filterGames={filterGames} 
+      searchGames = {searchedGames}
+      show={modalShow}
+      onHide={() => setModalShow(false)}
+      />
       <p>
         Global Sales in the Millions by Console
       </p>
       {gameData.length > 0 ? <GameGraphs data = {gameData}/> : null}
-      <SearchBar filterGames={filterGames}/>
+      <GameTable searchedGames={searchedGames} setModal = {setModalShow}/>
     </>
   );
 }
