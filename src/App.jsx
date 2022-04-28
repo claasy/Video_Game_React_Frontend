@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import GameGraphs from './Components/GameGraphs/GameGraphs';
+import SearchBar from './Components/SearchBar/SearchBar';
 
 let BASEURLS = 'https://localhost:7260/api/games';
 
 function App() {
   const [gameData, setGameData] = useState([])
-  const [gameByConsole, setGameByConsole] = useState({})
+  const [searchGames, setSearchGames ] = useState({})
   useEffect(() => {
     getGameData();
   }, [])
@@ -23,11 +24,27 @@ function App() {
     setGameByConsole(response.data)
   };
 
+  const filterGames = (searchterm) =>{
+     let matchingGames = games.filter((game) =>{
+       if(game.name.toLowerCase().includes(searchterm.toLowerCase))
+
+       return true
+
+      else return false
+     })
+
+     setDisplayGames(matchingGames)
+    };
+
+
 
   return (
-    <div>
+    <>
       <GameGraphs data = {gameData}/>
-    </div>
+      Hello
+    
+      <SearchBar filterGames={filterGames}/>
+    </>
   );
 }
 
