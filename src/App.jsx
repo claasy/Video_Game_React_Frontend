@@ -19,13 +19,13 @@ function App() {
     setGameData(response.data)
   }
   
-  async function getGameByConsole() {
-    let response = await axios.get(BASEURLS + "/gamesByConsole")
-    setGameByConsole(response.data)
-  };
+  // async function getGameByConsole() {
+  //   let response = await axios.get(BASEURLS + "/gamesByConsole")
+  //   setGameByConsole(response.data)
+  // };
 
   const filterGames = (searchterm) =>{
-     let matchingGames = games.filter((game) =>{
+     let matchingGames = searchGames.filter((game) =>{
        if(game.name.toLowerCase().includes(searchterm.toLowerCase))
 
        return true
@@ -33,13 +33,16 @@ function App() {
       else return false
      })
 
-     setDisplayGames(matchingGames)
+     setSearchGames(matchingGames)
     };
 
 
 
   return (
     <>
+      <p>
+        Global Sales in the Millions by Console
+      </p>
       {gameData.length > 0 ? <GameGraphs data = {gameData}/> : null}
       <SearchBar filterGames={filterGames}/>
     </>
