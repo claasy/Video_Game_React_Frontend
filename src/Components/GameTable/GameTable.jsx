@@ -18,24 +18,12 @@ const GameTable = (props) => {
         globalSales: ""
     })
 
-    function handleCLick(event) {
-        event.preventDefault();
+    function handleClick(record) {
+        // event.preventDefault();
         // update state with select data
-        let updatedData = {
-            rank: Rank,
-            name: Name,
-            platform: Platform,
-            year: Year,
-            genre: Genre,
-            publisher: Publisher,
-            northAmericaSales: NASales,
-            europeSales: EuSales,
-            japanSales: JapanSales,
-            otherSales: Other,
-            globalSales: Global
-        }
 
-        setRecord(...record, updatedData)
+
+        setRecord(record)
 
         // flip the switch to show modal
         props.setModal(true)
@@ -51,13 +39,7 @@ const GameTable = (props) => {
                 <td> {game.name} </td>
                 <td> {game.platform} </td>
                 <td>
-                  <Button onClick={handleCLick}
-                 let Rank={game.rank} Name={game.name} Platform={game.platform} Year={game.year}
-                 Genre={game.genre} Publisher={game.publisher} NASales={game.northAmericaSales} EuSales={game.europeSales}
-                 JapanSales={game.japanSales} Other={game.otherSales} Global={game.globalSales}>
-                    {" "}
-                    More Info{" "}
-                  </Button>
+                  <Button onClick={() => handleClick(game)}> More Info </Button>
                 </td>
                 <td></td>
               </tr>
