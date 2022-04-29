@@ -3,6 +3,8 @@ import axios from 'axios';
 import GameGraphs from './Components/GameGraphs/GameGraphs';
 import SearchBar from './Components/SearchBar/SearchBar';
 import GameTable from './Components/GameTable/GameTable';
+import EvalGraph from './Components/EvalGraph/EvalGraph';
+
 
 let BASEURLS = 'https://localhost:7260/api/games';
 
@@ -49,6 +51,7 @@ function App() {
         {gameData.length > 0 ? <GameGraphs data = {gameData}/> : null}  
       </div>
       <div>
+      {gameData.length > 0 ? <EvalGraph data = {gameData}/> : null}
       </div>
     </>
   );
