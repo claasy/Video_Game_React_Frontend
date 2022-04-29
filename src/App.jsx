@@ -4,6 +4,7 @@ import GameGraphs from './Components/GameGraphs/GameGraphs';
 import SearchBar from './Components/SearchBar/SearchBar';
 import GameTable from './Components/GameTable/GameTable';
 import EvalGraph from './Components/EvalGraph/EvalGraph';
+import PublisherGraph from './Components/PublisherGraph/PublisherGraph';
 
 
 let BASEURLS = 'https://localhost:7260/api/games';
@@ -45,13 +46,14 @@ function App() {
           onHide={() => setModalShow(false)}/>
       </div>
       <div>
-        <p>
-          Global Sales in the Millions by Console
-        </p>
+        
         {gameData.length > 0 ? <GameGraphs data = {gameData}/> : null}  
       </div>
       <div>
       {gameData.length > 0 ? <EvalGraph data = {gameData}/> : null}
+      </div>
+      <div>
+      {gameData.length > 0 ? <PublisherGraph data = {gameData}/> : null}
       </div>
     </>
   );

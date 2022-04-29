@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import Chart from "react-google-charts";
 
 
-const EvalGraph = (props) => {
+const PublisherGraph = (props) => {
     const [data,setData] = useState([]);
 
     function generateGraph() {
 
-        let filterGames = props.data.filter(genre => genre);
+        let filterGames = props.data.filter(publisher => publisher);
         let platforms = filterGames.map(game => {
-            return game.genre
+            return game.publisher
         });
 
 
@@ -17,15 +17,15 @@ const EvalGraph = (props) => {
         console.log(distinctPlatform)
 
         
-        let platformArrays = distinctPlatform.map(genre => {
+        let platformArrays = distinctPlatform.map(publisher => {
             let total = 0 
             filterGames.map(el=>{
-                if(el.genre == genre){
+                if(el.publisher == publisher){
                     total+= el.globalSales
                 }
             })
            
-            return [genre, total, "silver"]
+            return [publisher, total, "silver"]
       
         });
        
@@ -47,12 +47,10 @@ const EvalGraph = (props) => {
         <div>
             <Chart chartType="ColumnChart" width="100%" height="400px" data={data} />
             <p>
-                What is the most sucsessful genre throughout the consoles ?
-
-                Action is the most popular
+                Bonus: Most sucsessful publisher by Console
             </p>
         </div>
      
             )
 }
-export default EvalGraph;
+export default PublisherGraph;

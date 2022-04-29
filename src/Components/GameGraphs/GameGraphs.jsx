@@ -45,8 +45,11 @@ const GameGraphs = (props) => {
 
     return ( 
         <div>
+            <p>Global Sales in the Millions by Console</p>
             <Chart chartType="ColumnChart" width="100%" height="400px" data={data} />
+            <p>The above chart represents the best Video Game Console to invest in since 2013</p>
         </div>
+
      
             )
  
